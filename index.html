@@ -17,7 +17,6 @@
 
 <body>
   <div id="ciao"></div>
-  <button style="position:absolute; top:20px; left:20px; z-index:99" onclick=ruota()>ruota</button>
 
   <script>
     
@@ -28,6 +27,7 @@
             case "sferaAa":
               AR3D.cancellaOggetto("sferaAa");
               trasla("casaAa",-0.9);
+              creaSfera()
               break;
             case "sferaBa":
               AR3D.cancellaOggetto("sferaBa");
@@ -170,9 +170,6 @@
       [-0.4,-6.5,0],//30
     ];
     
-    
-
-
     let verticiBaseA=[
       ver[1],
       ver[7],
@@ -312,7 +309,7 @@
     AR3D.estrusione("baseR",ver[0],verticiBaseR,[0,0,altezzaBase],opzioniBase);
   }
 
-  {//EDIFICI
+  //EDIFICI
 
     let altezzaNascosta=0.3;
     let altezzaPiano=0.6;
@@ -460,19 +457,9 @@
     AR3D.estrusione("casaDa",[0,0,0],verticiCasaD,[0,0,altezzaPiano],opzioniCase);
     AR3D.sfera("sferaDa",new THREE.Vector3(...baricentroD),raggioSfere,opzioniSfera);
 
-    // let verticiCasa_=[
-    //   verCase[],
-    //   ];
-    // let baricentro_=[0,0,altezzaBase];
-    // verticiCasa_.forEach(el=>{
-    //   baricentro_[0]+=el[0];
-    //   baricentro_[1]+=el[1];
-    // })
-    // baricentro_[0]/=verticiCasa_.length;
-    // baricentro_[1]/=verticiCasa_.length;
-    // AR3D.estrusione("casa_a",[0,0,0],verticiCasa_,[0,0,altezzaPiano],opzioniCase);
-    // AR3D.sfera("sfera_a",new THREE.Vector3(...baricentro_),raggioSfere,opzioniSfera);
-  }
+    function creaSfera(id,posizione,raggio,opzioni){
+      AR3D.sfera(id,posizione,raggio,opzioniSfera);
+    }
   
   </script>
 </body>
