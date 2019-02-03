@@ -885,7 +885,7 @@
       _libreria.setup=function(dove,opzioni){
         let markerOpt={
           detectionMode:"mono",
-          marker:"voronoi",
+          marker:"elena",
           tipoMarker:"pattern"
         }
         if(opzioni!=null){
