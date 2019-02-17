@@ -28,7 +28,7 @@
     <div style="display:flex; justify-content: center; text-align: center">
       <img src=".\data\elenaMarker.png" style="width:100px; height:100px">
       <img src=".\data\clip1.png" style="height:100px">
-      <div style="width:100px"></div>
+      <div style="width:15px"></div>
       <img src=".\data\clip2.png" style="height:100px">
     </div>
     <p>
@@ -49,39 +49,71 @@
     })
 
     function raycast(intersezione){
-      let primoDelta=-1.2;
         for(let k=0;k<intersezione.length;k++){
           if(intersezione[k].object.name!=null){
             switch(intersezione[k].object.name){
             case "sferaAa":
-              AR3D.cancellaOggetto("sferaAa");
-              trasla("casaAa",primoDelta);
-              creaSfera()
+              creaCasaAa();
+              break;
+            case "sferaAb":
+              creaCasaAb();
+              break;
+            case "sferaAc":
+              creaCasaAc();
               break;
             case "sferaBa":
-              AR3D.cancellaOggetto("sferaBa");
-              trasla("casaBa",primoDelta);
+              creaCasaBa();
+              break;
+            case "sferaBb":
+              creaCasaBb();
+              break;
+            case "sferaBc":
+              creaCasaBc();
               break;
             case "sferaC1a":
-              AR3D.cancellaOggetto("sferaC1a");
-              trasla("casaC1a",primoDelta);
+              creaCasaC1a();
+              break;
+            case "sferaC1b":
+              creaCasaC1b();
+              break;
+            case "sferaC1c":
+              creaCasaC1c();
               break;
             case "sferaC2a":
-              AR3D.cancellaOggetto("sferaC2a");
-              trasla("casaC2a",primoDelta);
+              creaCasaC2a();
+              break;
+            case "sferaC2b":
+              creaCasaC2b();
+              break;
+            case "sferaC2c":
+              creaCasaC2c();
               break;
             case "sferaC3a":
-              AR3D.cancellaOggetto("sferaC3a");
-              trasla("casaC3a",primoDelta);
+              creaCasaC3a();
+              break;
+            case "sferaC3b":
+              creaCasaC3b();
+              break;
+            case "sferaC3c":
+              creaCasaC3c();
               break;
             case "sferaC4a":
-              AR3D.cancellaOggetto("sferaC4a");
-              trasla("casaC4a",primoDelta);
+              creaCasaC4a();
               break;
+            case "sferaC4b":
+              creaCasaC4b();
+              break;
+            case "sferaC4c":
+              creaCasaC4c();
               break;
             case "sferaDa":
-              AR3D.cancellaOggetto("sferaDa");
-              trasla("casaDa",primoDelta);
+              creaCasaDa();
+              break;
+            case "sferaDb":
+              creaCasaDb();
+              break;
+            case "sferaDc":
+              creaCasaDc();
               break;
             }
           }
@@ -369,7 +401,7 @@
       [-5.1,-7,altezzaNascosta],
       [-0.5,-7.5,altezzaNascosta]
     ];
-    let opzioniSfera={colore:"green",trasparente:true,trasparenza:0.5};
+    let opzioniSfera={colore:"green"};
     let opzioniCase={coloreFacce:0xffffff,spigoli:false};
 
 
@@ -386,9 +418,31 @@
     })
     baricentroA[0]/=verticiCasaA.length;
     baricentroA[1]/=verticiCasaA.length;
-    AR3D.estrusione("casaAa",[0,0,0],verticiCasaA,[0,0,altezzaPiano],opzioniCase);
+    baricentroA[2]-=0.5;
     AR3D.sfera("sferaAa",new THREE.Vector3(...baricentroA),raggioSfere,opzioniSfera);
 
+    function creaCasaAa(){
+      AR3D.cancellaOggetto("sferaAa");
+      let primoDelta=-1.2;
+      AR3D.estrusione("casaAa",[0,0,0],verticiCasaA,[0,0,altezzaPiano],{coloreFacce:0xaa9999,spigoli:false});
+      trasla("casaAa",primoDelta);
+      let bari=new THREE.Vector3(...baricentroA);
+      bari.z-=altezzaPiano;
+      AR3D.sfera("sferaAb",bari,raggioSfere,opzioniSfera);
+    }
+    function creaCasaAb(){
+      AR3D.cancellaOggetto("sferaAb");
+      AR3D.estrusione("casaAb",[0,0,0],verticiCasaA,[0,0,altezzaPiano],{coloreFacce:0xcc9999,spigoli:false});
+      trasla("casaAb",-3*altezzaPiano);
+      let bari=new THREE.Vector3(...baricentroA);
+      bari.z-=2*altezzaPiano;
+      AR3D.sfera("sferaAc",bari,raggioSfere,opzioniSfera);
+    }
+    function creaCasaAc(){
+      AR3D.cancellaOggetto("sferaAc");
+      AR3D.estrusione("casaAc",[0,0,0],verticiCasaA,[0,0,altezzaPiano],{coloreFacce:0xee9999,spigoli:false});
+      trasla("casaAc",-4*altezzaPiano);
+    }
 
     let verticiCasaB=[
       verCase[5],
@@ -403,8 +457,31 @@
     })
     baricentroB[0]/=verticiCasaB.length;
     baricentroB[1]/=verticiCasaB.length;
-    AR3D.estrusione("casaBa",[0,0,0],verticiCasaB,[0,0,altezzaPiano],opzioniCase);
+    baricentroB[2]-=0.5;
     AR3D.sfera("sferaBa",new THREE.Vector3(...baricentroB),raggioSfere,opzioniSfera);
+
+    function creaCasaBa(){
+      AR3D.cancellaOggetto("sferaBa");
+      let primoDelta=-1.2;
+      AR3D.estrusione("casaBa",[0,0,0],verticiCasaB,[0,0,altezzaPiano],{coloreFacce:0x9999aa,spigoli:false});
+      trasla("casaBa",primoDelta);
+      let bari=new THREE.Vector3(...baricentroB);
+      bari.z-=altezzaPiano;
+      AR3D.sfera("sferaBb",bari,raggioSfere,opzioniSfera);
+    }
+    function creaCasaBb(){
+      AR3D.cancellaOggetto("sferaBb");
+      AR3D.estrusione("casaBb",[0,0,0],verticiCasaB,[0,0,altezzaPiano],{coloreFacce:0x9999bb,spigoli:false});
+      trasla("casaBb",-3*altezzaPiano);
+      let bari=new THREE.Vector3(...baricentroB);
+      bari.z-=2*altezzaPiano;
+      AR3D.sfera("sferaBc",bari,raggioSfere,opzioniSfera);
+    }
+    function creaCasaBc(){
+      AR3D.cancellaOggetto("sferaBc");
+      AR3D.estrusione("casaBc",[0,0,0],verticiCasaB,[0,0,altezzaPiano],{coloreFacce:0x9999ee,spigoli:false});
+      trasla("casaBc",-4*altezzaPiano);
+    }
 
     let verticiCasaC1=[
       verCase[9],
@@ -419,8 +496,31 @@
     })
     baricentroC1[0]/=verticiCasaC1.length;
     baricentroC1[1]/=verticiCasaC1.length;
-    AR3D.estrusione("casaC1a",[0,0,0],verticiCasaC1,[0,0,altezzaPiano],opzioniCase);
+    baricentroC1[2]-=0.5;
     AR3D.sfera("sferaC1a",new THREE.Vector3(...baricentroC1),raggioSfere,opzioniSfera);
+
+    function creaCasaC1a(){
+      AR3D.cancellaOggetto("sferaC1a");
+      let primoDelta=-1.2;
+      AR3D.estrusione("casaC1a",[0,0,0],verticiCasaC1,[0,0,altezzaPiano],{coloreFacce:0x9999aa,spigoli:false});
+      trasla("casaC1a",primoDelta);
+      let bari=new THREE.Vector3(...baricentroC1);
+      bari.z-=altezzaPiano;
+      AR3D.sfera("sferaC1b",bari,raggioSfere,opzioniSfera);
+    }
+    function creaCasaC1b(){
+      AR3D.cancellaOggetto("sferaC1b");
+      AR3D.estrusione("casaC1b",[0,0,0],verticiCasaC1,[0,0,altezzaPiano],{coloreFacce:0x9999bb,spigoli:false});
+      trasla("casaC1b",-3*altezzaPiano);
+      let bari=new THREE.Vector3(...baricentroC1);
+      bari.z-=2*altezzaPiano;
+      AR3D.sfera("sferaC1c",bari,raggioSfere,opzioniSfera);
+    }
+    function creaCasaC1c(){
+      AR3D.cancellaOggetto("sferaC1c");
+      AR3D.estrusione("casaC1c",[0,0,0],verticiCasaC1,[0,0,altezzaPiano],{coloreFacce:0x9999ee,spigoli:false});
+      trasla("casaC1c",-4*altezzaPiano);
+    }
 
     let verticiCasaC2=[
       verCase[10],
@@ -435,9 +535,32 @@
     })
     baricentroC2[0]/=verticiCasaC2.length;
     baricentroC2[1]/=verticiCasaC2.length;
-    AR3D.estrusione("casaC2a",[0,0,0],verticiCasaC2,[0,0,altezzaPiano],opzioniCase);
+    baricentroC2[2]-=0.5;
     AR3D.sfera("sferaC2a",new THREE.Vector3(...baricentroC2),raggioSfere,opzioniSfera);
     
+    function creaCasaC2a(){
+      AR3D.cancellaOggetto("sferaC2a");
+      let primoDelta=-1.2;
+      AR3D.estrusione("casaC2a",[0,0,0],verticiCasaC2,[0,0,altezzaPiano],{coloreFacce:0x9999aa,spigoli:false});
+      trasla("casaC2a",primoDelta);
+      let bari=new THREE.Vector3(...baricentroC2);
+      bari.z-=altezzaPiano;
+      AR3D.sfera("sferaC2b",bari,raggioSfere,opzioniSfera);
+    }
+    function creaCasaC2b(){
+      AR3D.cancellaOggetto("sferaC2b");
+      AR3D.estrusione("casaC2b",[0,0,0],verticiCasaC2,[0,0,altezzaPiano],{coloreFacce:0x9999bb,spigoli:false});
+      trasla("casaC2b",-3*altezzaPiano);
+      let bari=new THREE.Vector3(...baricentroC2);
+      bari.z-=2*altezzaPiano;
+      AR3D.sfera("sferaC2c",bari,raggioSfere,opzioniSfera);
+    }
+    function creaCasaC2c(){
+      AR3D.cancellaOggetto("sferaC2c");
+      AR3D.estrusione("casaC2c",[0,0,0],verticiCasaC2,[0,0,altezzaPiano],{coloreFacce:0x9999ee,spigoli:false});
+      trasla("casaC2c",-4*altezzaPiano);
+    }
+
     let verticiCasaC3=[
       verCase[13],
       verCase[15],
@@ -451,9 +574,32 @@
     })
     baricentroC3[0]/=verticiCasaC3.length;
     baricentroC3[1]/=verticiCasaC3.length;
-    AR3D.estrusione("casaC3a",[0,0,0],verticiCasaC3,[0,0,altezzaPiano],opzioniCase);
+    baricentroC3[2]-=0.5;
     AR3D.sfera("sferaC3a",new THREE.Vector3(...baricentroC3),raggioSfere,opzioniSfera);
     
+    function creaCasaC3a(){
+      AR3D.cancellaOggetto("sferaC3a");
+      let primoDelta=-1.2;
+      AR3D.estrusione("casaC3a",[0,0,0],verticiCasaC3,[0,0,altezzaPiano],{coloreFacce:0x9999aa,spigoli:false});
+      trasla("casaC3a",primoDelta);
+      let bari=new THREE.Vector3(...baricentroC3);
+      bari.z-=altezzaPiano;
+      AR3D.sfera("sferaC3b",bari,raggioSfere,opzioniSfera);
+    }
+    function creaCasaC3b(){
+      AR3D.cancellaOggetto("sferaC3b");
+      AR3D.estrusione("casaC3b",[0,0,0],verticiCasaC3,[0,0,altezzaPiano],{coloreFacce:0x9999bb,spigoli:false});
+      trasla("casaC3b",-3*altezzaPiano);
+      let bari=new THREE.Vector3(...baricentroC3);
+      bari.z-=2*altezzaPiano;
+      AR3D.sfera("sferaC3c",bari,raggioSfere,opzioniSfera);
+    }
+    function creaCasaC3c(){
+      AR3D.cancellaOggetto("sferaC3c");
+      AR3D.estrusione("casaC3c",[0,0,0],verticiCasaC3,[0,0,altezzaPiano],{coloreFacce:0x9999ee,spigoli:false});
+      trasla("casaC3c",-4*altezzaPiano);
+    }
+
     let verticiCasaC4=[
       verCase[15],
       verCase[17],
@@ -467,8 +613,31 @@
     })
     baricentroC4[0]/=verticiCasaC4.length;
     baricentroC4[1]/=verticiCasaC4.length;
-    AR3D.estrusione("casaC4a",[0,0,0],verticiCasaC4,[0,0,altezzaPiano],opzioniCase);
+    baricentroC4[2]-=0.5;
     AR3D.sfera("sferaC4a",new THREE.Vector3(...baricentroC4),raggioSfere,opzioniSfera);
+
+    function creaCasaC4a(){
+      AR3D.cancellaOggetto("sferaC4a");
+      let primoDelta=-1.2;
+      AR3D.estrusione("casaC4a",[0,0,0],verticiCasaC4,[0,0,altezzaPiano],{coloreFacce:0x9999aa,spigoli:false});
+      trasla("casaC4a",primoDelta);
+      let bari=new THREE.Vector3(...baricentroC4);
+      bari.z-=altezzaPiano;
+      AR3D.sfera("sferaC4b",bari,raggioSfere,opzioniSfera);
+    }
+    function creaCasaC4b(){
+      AR3D.cancellaOggetto("sferaC4b");
+      AR3D.estrusione("casaC4b",[0,0,0],verticiCasaC4,[0,0,altezzaPiano],{coloreFacce:0x9999bb,spigoli:false});
+      trasla("casaC4b",-3*altezzaPiano);
+      let bari=new THREE.Vector3(...baricentroC4);
+      bari.z-=2*altezzaPiano;
+      AR3D.sfera("sferaC4c",bari,raggioSfere,opzioniSfera);
+    }
+    function creaCasaC4c(){
+      AR3D.cancellaOggetto("sferaC4c");
+      AR3D.estrusione("casaC4c",[0,0,0],verticiCasaC4,[0,0,altezzaPiano],{coloreFacce:0x9999ee,spigoli:false});
+      trasla("casaC4c",-4*altezzaPiano);
+    }
 
     let verticiCasaD=[
       verCase[19],
@@ -483,11 +652,30 @@
     })
     baricentroD[0]/=verticiCasaD.length;
     baricentroD[1]/=verticiCasaD.length;
-    AR3D.estrusione("casaDa",[0,0,0],verticiCasaD,[0,0,altezzaPiano],opzioniCase);
+    baricentroD[2]-=0.5;
     AR3D.sfera("sferaDa",new THREE.Vector3(...baricentroD),raggioSfere,opzioniSfera);
 
-    function creaSfera(id,posizione,raggio,opzioni){
-      AR3D.sfera(id,posizione,raggio,opzioniSfera);
+    function creaCasaDa(){
+      AR3D.cancellaOggetto("sferaDa");
+      let primoDelta=-1.2;
+      AR3D.estrusione("casaDa",[0,0,0],verticiCasaD,[0,0,altezzaPiano],{coloreFacce:0x9999aa,spigoli:false});
+      trasla("casaDa",primoDelta);
+      let bari=new THREE.Vector3(...baricentroD);
+      bari.z-=altezzaPiano;
+      AR3D.sfera("sferaDb",bari,raggioSfere,opzioniSfera);
+    }
+    function creaCasaDb(){
+      AR3D.cancellaOggetto("sferaDb");
+      AR3D.estrusione("casaDb",[0,0,0],verticiCasaD,[0,0,altezzaPiano],{coloreFacce:0x9999bb,spigoli:false});
+      trasla("casaDb",-3*altezzaPiano);
+      let bari=new THREE.Vector3(...baricentroD);
+      bari.z-=2*altezzaPiano;
+      AR3D.sfera("sferaDc",bari,raggioSfere,opzioniSfera);
+    }
+    function creaCasaDc(){
+      AR3D.cancellaOggetto("sferaDc");
+      AR3D.estrusione("casaDc",[0,0,0],verticiCasaD,[0,0,altezzaPiano],{coloreFacce:0x9999ee,spigoli:false});
+      trasla("casaDc",-4*altezzaPiano);
     }
   
   </script>
