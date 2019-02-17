@@ -19,6 +19,7 @@
   <div id="sfondo" style="z-index:10;"></div>
   <button style="font-size:150%; position:absolute; top:20px; left:20px; z-index:90" onclick=appari()>How to</button>
   <div id="info" style="display:flex; flex-direction:column; background-color:white; z-index:99; position:absolute; left:20%; top:20%; width:60%; border-radius:5px; padding:10px; opacity: 0.6">
+    <p>Please give permissione to use the camera, and wait a little bit for initialization.</p>
     <p>
       Welcome to my little AR (augmented reality!) page. Point your phone toward the marker
       to make a cell of my Venice Voronoi appear. Observe it from different angles, and tap
@@ -48,38 +49,39 @@
     })
 
     function raycast(intersezione){
+      let primoDelta=-1.2;
         for(let k=0;k<intersezione.length;k++){
           if(intersezione[k].object.name!=null){
             switch(intersezione[k].object.name){
             case "sferaAa":
               AR3D.cancellaOggetto("sferaAa");
-              trasla("casaAa",-0.9);
+              trasla("casaAa",primoDelta);
               creaSfera()
               break;
             case "sferaBa":
               AR3D.cancellaOggetto("sferaBa");
-              trasla("casaBa",-0.9);
+              trasla("casaBa",primoDelta);
               break;
             case "sferaC1a":
               AR3D.cancellaOggetto("sferaC1a");
-              trasla("casaC1a",-0.9);
+              trasla("casaC1a",primoDelta);
               break;
             case "sferaC2a":
               AR3D.cancellaOggetto("sferaC2a");
-              trasla("casaC2a",-0.9);
+              trasla("casaC2a",primoDelta);
               break;
             case "sferaC3a":
               AR3D.cancellaOggetto("sferaC3a");
-              trasla("casaC3a",-0.9);
+              trasla("casaC3a",primoDelta);
               break;
             case "sferaC4a":
               AR3D.cancellaOggetto("sferaC4a");
-              trasla("casaC4a",-0.9);
+              trasla("casaC4a",primoDelta);
               break;
               break;
             case "sferaDa":
               AR3D.cancellaOggetto("sferaDa");
-              trasla("casaDa",-0.9);
+              trasla("casaDa",primoDelta);
               break;
             }
           }
@@ -98,7 +100,7 @@
     AR3D.getOpzioniGlobali().raycastCallback=raycast;
   {//MARE
     let opzioniMare={lato:2,colore:0x002299,trasparenza:0.2};
-    AR3D.piano("mare",new THREE.Vector3(0,0,0.2),new THREE.Vector3(1,0,0),new THREE.Vector3(0,1,0),opzioniMare)
+    AR3D.piano("mare",new THREE.Vector3(0,0,0.6),new THREE.Vector3(1,0,0),new THREE.Vector3(0,1,0),opzioniMare)
 
     let opzioniBar={coloreFacce:0xffffff};
     barchetta("bar1",[1,5,0.5],Math.PI*0.9,0.5,opzioniBar);
@@ -158,7 +160,7 @@
 
   {//BASE
 
-    var altezzaBase=0.2;
+    var altezzaBase=0.4;
     let opzioniBase={
       coloreFacce:0x333333,
       spigoli:false
@@ -338,7 +340,7 @@
 
   //EDIFICI
 
-    let altezzaNascosta=0.3;
+    let altezzaNascosta=0.6;
     let altezzaPiano=0.6;
     let raggioSfere=0.5;
 
