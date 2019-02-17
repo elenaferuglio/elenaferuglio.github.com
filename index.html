@@ -16,10 +16,37 @@
 </head>
 
 <body>
-  <div id="ciao"></div>
-
+  <div id="sfondo" style="z-index:10;"></div>
+  <button style="font-size:150%; position:absolute; top:20px; left:20px; z-index:90" onclick=appari()>How to</button>
+  <div id="info" style="display:flex; flex-direction:column; background-color:white; z-index:99; position:absolute; left:20%; top:20%; width:60%; border-radius:5px; padding:10px; opacity: 0.6">
+    <p>
+      Welcome to my little AR (augmented reality!) page. Point your phone toward the marker
+      to make a cell of my Venice Voronoi appear. Observe it from different angles, and tap
+      on the green spheres to rise buildings on predisposed lots.
+    </p>
+    <div style="display:flex; justify-content: center; text-align: center">
+      <img src=".\data\elenaMarker.png" style="width:100px; height:100px">
+      <img src=".\data\clip1.png" style="height:100px">
+      <div style="width:100px"></div>
+      <img src=".\data\clip2.png" style="height:100px">
+    </div>
+    <p>
+      The ideal experience comes with a printed marker, but you can use the one on my CV.
+      Click anywhere to hide this screen, click the Info button to show again.
+    </p>
+  </div>
   <script>
-    
+    function appari(){
+      document.getElementById("info").style.display="block";
+    }
+
+    document.getElementById("info").addEventListener("click", function(){
+      document.getElementById("info").style.display="none";
+    })
+    document.getElementById("sfondo").addEventListener("click", function(){
+      document.getElementById("info").style.display="none";
+    })
+
     function raycast(intersezione){
         for(let k=0;k<intersezione.length;k++){
           if(intersezione[k].object.name!=null){
@@ -66,7 +93,7 @@
 
     
 
-    AR3D.setup("ciao",{riferimento:false});
+    AR3D.setup("sfondo",{riferimento:false});
     
     AR3D.getOpzioniGlobali().raycastCallback=raycast;
   {//MARE
