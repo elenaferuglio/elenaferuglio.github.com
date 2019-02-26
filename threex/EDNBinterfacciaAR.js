@@ -884,9 +884,12 @@
     {//FUNZIONI SETUP
       _libreria.setup=function(dove,opzioni){
         let markerOpt={
-          detectionMode:"mono",
-          marker:"elena",
-          tipoMarker:"pattern"
+          // detectionMode:"mono",
+          // marker:"elena",
+          // tipoMarker:"pattern",
+          detectionMode:"mono_and_matrix",
+          tipoMarker:"barcode",
+          numeroBarcode:"20",
         }
         if(opzioni!=null){
           Object.keys(opzioni).forEach(chiave=>{
@@ -972,6 +975,7 @@
         arToolkitContext = new THREEx.ArToolkitContext({
           cameraParametersUrl: 'data/camera_para.dat',
           detectionMode: markerOpt.detectionMode,
+		      matrixCodeType: "3x3",
           imageSmoothingEnabled : true,
         });
         
@@ -996,10 +1000,9 @@
             patternUrl: "data/"+markerOpt.marker+".patt",
           })
         }else if(markerOpt.tipoMarker=="barcode"){
-          markerControls1=new THREEx.ArMarkerControls(arToolkitContext, scena, {
-            size:1,
-            type: markerOpt.tipoMarker,
-            barcodeValue: markerOpt.marker,
+          markerControls1 = new THREEx.ArMarkerControls(arToolkitContext, scena, {
+            type: "barcode",
+            barcodeValue: 20,
           })
         }
 
